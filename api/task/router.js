@@ -1,24 +1,31 @@
-const express = require('express');
-const Tasks = require('./model.js');
+const router = require("express").Router();
+const tasks = require("./model.js")
 
-const router = express.Router();
-
-router.get('/', (req, res, next) => {
-    Tasks.getAllTasks()
-        .then( tasks => {
-            res.status(200).json(tasks);
+router.get("/", (req,res)=>{
+    tasks.find()
+    .then(data=>{
+        data.map(task=>{
+            task.task_completed ? task.task_completed = true : task.task_completed = false
+            return task
         })
-        .catch(next)
-});
-
-router.post('/', (req, res, next) => {
-    const newTask = req.body;
-    Tasks.createTask(newTask)
-        .then( task => {
-            res.status(201).json(task);
-        })
-        .catch(next)
+        res.status(200).json(data);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err.message);
+    })
 })
 
-module.exports = router; 
+router.post("/", (req,res)=>{
+    tasks.insert(req.body)
+    .then(task=>{
+        task.task_completed ? task.task_completed = true : task.task_completed = false
+        res.status(201).json(task);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json(err.message);
+    })
+})
 
+module.exports = router;

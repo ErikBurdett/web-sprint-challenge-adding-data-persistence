@@ -118,6 +118,10 @@ Build an API inside the `api` folder with endpoints for:
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain the difference between Relational Databases and SQL.
+according to mongodb tldr summary: SQL databases are known as relational databases, and have a table-based data structure, with a strict, predefined schema required. NoSQL databases, or non-relational databases, can be document based, graph databases, key-value pairs, or wide-column stores.
 2. Why do tables need a Primary Key?
-3. What is the name given to a table column that references the Primary Key on another table?
-4. What do we need in order to have a _many to many_ relationship between two tables?
+To be able to be accessed by other tables (?)
+3. What is the name given to a table column that references the Primary Key on another table? a forgein key 
+4. What do we need in order to have a _many to many_ relationship between two tables? 
+the data to be shared between multiple tables 
+
